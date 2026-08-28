@@ -1,15 +1,16 @@
 import { useState } from "react";
+import { v4 } from "uuid";
 import AddTask from "./components/AddTask";
 import Tasks from "./components/Tasks";
 
 const App = () => {
   const [tasks, setTasks] = useState([
-    { id: 1, title: "Estudar", description: "Teste", isCompleted: false },
-    { id: 2, title: "Comer", description: "Teste", isCompleted: false },
-    { id: 3, title: "Treinar", description: "Teste", isCompleted: false },
+    { id: "1", title: "Estudar", description: "Teste", isCompleted: false },
+    { id: "2", title: "Comer", description: "Teste", isCompleted: false },
+    { id: "3", title: "Treinar", description: "Teste", isCompleted: false },
   ]);
 
-  const onTaskClick = (taskId: number) => {
+  const onTaskClick = (taskId: string) => {
     const updatedTasks = tasks.map((task) => {
       if (task.id === taskId) {
         return { ...task, isCompleted: !task.isCompleted };
@@ -21,7 +22,7 @@ const App = () => {
     setTasks(updatedTasks);
   };
 
-  const onDeleteClick = (taskId: number) => {
+  const onDeleteClick = (taskId: string) => {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
 
     setTasks(updatedTasks);
@@ -29,7 +30,7 @@ const App = () => {
 
   const onNewTask = (title: string, description: string) => {
     const newTask = {
-      id: tasks.length + 1,
+      id: v4(),
       title,
       description,
       isCompleted: false,

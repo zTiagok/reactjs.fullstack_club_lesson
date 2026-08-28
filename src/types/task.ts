@@ -1,5 +1,5 @@
 export type TypeTasks = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   isCompleted: boolean;
