@@ -31,8 +31,8 @@ const Tasks = ({ tasks, onTaskClick, onDeleteClick }: Props) => {
 
 interface Props {
   tasks: TypeTasks[];
-  onTaskClick: Function;
-  onDeleteClick: Function;
+  onTaskClick: (taskId: number) => void;
+  onDeleteClick: (taskId: number) => void;
 }
 
 export default Tasks;
