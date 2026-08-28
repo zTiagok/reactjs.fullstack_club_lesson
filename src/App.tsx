@@ -27,13 +27,24 @@ const App = () => {
     setTasks(updatedTasks);
   };
 
+  const onNewTask = (title: string, description: string) => {
+    const newTask = {
+      id: tasks.length + 1,
+      title,
+      description,
+      isCompleted: false,
+    };
+
+    tasks.push(newTask);
+  };
+
   return (
     <div className="flex justify-center w-screen h-screen p-6 bg-slate-500">
-      <div className="w-[500px] space-y-3">
+      <div className="w-[500px] space-y-4">
         <h1 className="text-3xl text-slate-100 font-bold text-center">
           Gerenciador de Tarefas
         </h1>
-        <AddTask />
+        <AddTask onNewTask={onNewTask} />
         <Tasks
           tasks={tasks}
           onTaskClick={onTaskClick}
