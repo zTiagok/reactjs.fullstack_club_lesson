@@ -4,6 +4,11 @@ const AddTask = ({ onNewTask }: Props) => {
   const [titleValue, setTitleValue] = useState<string>("");
   const [descriptionValue, setDescriptionValue] = useState<string>("");
 
+  const clearInputValues = () => {
+    setTitleValue("");
+    setDescriptionValue("");
+  };
+
   return (
     <div className="flex flex-col space-y-3 p-6 *:p-2 bg-slate-200 rounded-md *:rounded-md [&>input]:border-slate-400 [&>input]:outline-slate-400 shadow [&>input]:border">
       <input
@@ -19,7 +24,14 @@ const AddTask = ({ onNewTask }: Props) => {
         onChange={(event) => setDescriptionValue(event.currentTarget.value)}
       />
       <button
-        onClick={() => onNewTask(titleValue, descriptionValue)}
+        onClick={() => {
+          if (!titleValue.trim()) {
+            return alert("Preencha o título da tarefa.");
+          }
+
+          onNewTask(titleValue, descriptionValue);
+          clearInputValues();
+        }}
         className="text-white bg-slate-500"
       >
         Adicionar
