@@ -35,7 +35,7 @@ const App = () => {
       isCompleted: false,
     };
 
-    tasks.push(newTask);
+    setTasks([...tasks, newTask]);
   };
 
   return (
